@@ -32,7 +32,7 @@ Built for an ML/AI + .NET/React + low-level dev workflow, plus music.
 ## Type
 
 Data/numerals use **CaskaydiaCove Nerd Font Mono** (so glyph icons render
-inline); captions use **Inter**. Both are already installed on this machine.
+inline); captions use **Inter**.
 
 ## Install
 
