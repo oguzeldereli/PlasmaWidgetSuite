@@ -69,6 +69,24 @@ stopped, then restarts them — so the change sticks. `remove` restores the defa
 ./panel/setup-top-bar.sh remove   # remove it
 ```
 
+### Deck traversal shortcuts
+
+Global keyboard shortcuts to walk the windows along the Deck (stable creation
+order, wrapping around). Landing on a window **un-minimises and activates** it.
+
+```sh
+./panel/setup-shortcuts.sh          # Meta+]  next window,  Meta+[  previous
+./panel/setup-shortcuts.sh remove   # remove them
+```
+
+Rebind in **System Settings → Shortcuts → KWin → "Lattice Deck …"**.
+
+Implemented as a **KWin script** (`panel/kwin-deck/`) so it works on **Wayland
+and X11** — it registers its own shortcuts, keeps its own stable window order
+(KWin's live list reorders on focus), and activates + un-minimises the target.
+To also maximise the window you land on, set `FORCE_MAXIMIZE = true` at the top
+of `panel/kwin-deck/contents/code/main.js` and re-run `setup-shortcuts.sh`.
+
 The Global Menu shows each focused app's real menus (KWin's appmenu export).
 A true *custom*-styled global menu isn't possible in pure QML here — the menu
 model lives inside the compiled `org.kde.plasma.appmenu` applet — so the suite

@@ -24,6 +24,7 @@ PlasmoidItem {
         { glyph: String.fromCharCode(0xf121), label: "Code",     cmd: "code" },
         { glyph: String.fromCharCode(0xf268), label: "Chrome",   cmd: "google-chrome-stable" },
         { glyph: String.fromCharCode(0xf07c), label: "Files",    cmd: "dolphin" },
+        { glyph: String.fromCharCode(0xf1bc), label: "Spotify",  cmd: "flatpak run com.spotify.Client" },
         { glyph: String.fromCharCode(0xf002), label: "Run",      cmd: "krunner" }
     ]
 

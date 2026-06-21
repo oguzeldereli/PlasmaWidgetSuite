@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Id": "lattice-deck",
+        "Name": "Lattice Deck Navigation",
+        "Description": "Global shortcuts to traverse windows along the Lattice Deck (Wayland + X11).",
+        "Authors": [
+            { "Name": "Lattice", "Email": "ozgur@guzeldereli.com" }
+        ],
+        "Icon": "preferences-system-windows",
+        "License": "MIT",
+        "Version": "1.0",
+        "EnabledByDefault": true
+    },
+    "X-Plasma-API": "javascript"
+}
