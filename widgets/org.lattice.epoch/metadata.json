@@ -1,0 +1,18 @@
+{
+    "KPlugin": {
+        "Id": "org.lattice.epoch",
+        "Name": "Lattice · Epoch",
+        "Description": "Dev-time: clock, ISO week, day-of-year, a live Unix epoch counter and uptime.",
+        "Icon": "clock",
+        "Category": "Date and Time",
+        "Authors": [
+            { "Name": "Lattice", "Email": "ozgur@guzeldereli.com" }
+        ],
+        "License": "MIT",
+        "Version": "1.0.0",
+        "Website": "https://github.com/oguzeldereli/PlasmaWidgetSuite"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-Provides": "org.kde.plasma.time,org.kde.plasma.date",
+    "KPackageStructure": "Plasma/Applet"
+}

@@ -1,0 +1,17 @@
+{
+    "KPlugin": {
+        "Id": "org.lattice.rail",
+        "Name": "Lattice · Rail",
+        "Description": "A creative launcher rail — hairline command cells that slide open their label on hover.",
+        "Icon": "applications-utilities",
+        "Category": "Application Launchers",
+        "Authors": [
+            { "Name": "Lattice", "Email": "ozgur@guzeldereli.com" }
+        ],
+        "License": "MIT",
+        "Version": "1.0.0",
+        "Website": "https://github.com/oguzeldereli/PlasmaWidgetSuite"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "KPackageStructure": "Plasma/Applet"
+}

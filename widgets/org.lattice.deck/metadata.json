@@ -1,0 +1,17 @@
+{
+    "KPlugin": {
+        "Id": "org.lattice.deck",
+        "Name": "Lattice · Deck",
+        "Description": "A window tape — app icons on hairline ticks; the active window lights its segment and opens its title.",
+        "Icon": "preferences-system-windows",
+        "Category": "Windows and Tasks",
+        "Authors": [
+            { "Name": "Lattice", "Email": "ozgur@guzeldereli.com" }
+        ],
+        "License": "MIT",
+        "Version": "1.0.0",
+        "Website": "https://github.com/oguzeldereli/PlasmaWidgetSuite"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "KPackageStructure": "Plasma/Applet"
+}

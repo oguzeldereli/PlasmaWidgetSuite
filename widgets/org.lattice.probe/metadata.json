@@ -1,0 +1,17 @@
+{
+    "KPlugin": {
+        "Id": "org.lattice.probe",
+        "Name": "Lattice · Probe",
+        "Description": "Network throughput as twin down/up sparklines with live rates.",
+        "Icon": "network-wireless",
+        "Category": "System Information",
+        "Authors": [
+            { "Name": "Lattice", "Email": "ozgur@guzeldereli.com" }
+        ],
+        "License": "MIT",
+        "Version": "1.0.0",
+        "Website": "https://github.com/oguzeldereli/PlasmaWidgetSuite"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "KPackageStructure": "Plasma/Applet"
+}
