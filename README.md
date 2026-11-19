@@ -50,12 +50,15 @@ Then right-click the desktop → **Add Widgets…** → search **"Lattice"**.
 A slim top panel laid out as:
 
 ```
-[ ◉ Launcher ] [ Global Menu ] ····· [ Deck task tape ] ····· [ Rail ] [ Epoch clock ]
+[ ◉ Launcher ] [ Global Menu ] ····· [ Deck task tape ] ····· [ Rail ] [ Epoch clock ] [ 🔔 ]
 ```
 
 A full-screen app launcher (kickerdash) on the far left, real application menus,
-the window tape centered, launchers + clock on the right. It's additive — your
-existing panels are untouched.
+the window tape centered, launchers + clock on the right, then a notification
+bell. The bell is Plasma's notification server: without it (no system tray
+anywhere), nothing answers notifications and apps that send them synchronously,
+such as Discord, freeze for ~60 s each time. It's additive — your existing
+panels are untouched.
 
 **Super/Meta key:** apply binds Super to that launcher (full-screen, so it always
 opens centered) and disables the orphaned generic *"activate application launcher"*

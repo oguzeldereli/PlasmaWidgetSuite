@@ -29,7 +29,7 @@
     p.hiding = "none";
     p.floating = false;
 
-    // [ launcher ] [ global menu ]  ·····  [ task tape ]  ·····  [ rail ] [ clock ]
+    // [ launcher ] [ global menu ]  ·····  [ task tape ]  ·····  [ rail ] [ clock ] [ bell ]
 
     // App launcher bound to the Super/Meta key. Full-screen launcher => always
     // opens centered (fixes the orphaned "activate application launcher" that
@@ -45,4 +45,10 @@
     expandingSpacer(p);
     p.addWidget("org.lattice.rail");
     p.addWidget("org.lattice.epoch");
+
+    // Notification server. Plasma's org.freedesktop.Notifications lives in this
+    // applet (normally inside the system tray). With no tray on this bar, nothing
+    // serves notifications: D-Bus activation waits 60 s and fails, and apps that
+    // notify synchronously (Electron/libnotify, e.g. Discord) freeze meanwhile.
+    p.addWidget("org.kde.plasma.notifications");
 })();
