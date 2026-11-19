@@ -77,19 +77,6 @@ PlasmoidItem {
                     font.pixelSize: root.glyphPx * 0.8
                     anchors.verticalCenter: parent.verticalCenter
                 }
-                Rectangle {   // blinking caret
-                    id: caret
-                    width: Math.max(2, Lattice.Theme.hair * 2)
-                    height: root.glyphPx * 0.9
-                    color: root.accent
-                    anchors.verticalCenter: parent.verticalCenter
-                    // Hard terminal-style blink: 2 redraws/s. A tweened infinite
-                    // animation would repaint the whole panel every vsync.
-                    Timer {
-                        interval: 600; running: true; repeat: true
-                        onTriggered: caret.opacity = caret.opacity > 0.5 ? 0 : 1
-                    }
-                }
             }
 
             Repeater {

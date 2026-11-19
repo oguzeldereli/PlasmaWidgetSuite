@@ -35,6 +35,6 @@ KCM.SimpleKCM {
         Item { Kirigami.FormData.isSection: true }
 
         QQC.CheckBox { id: always; Kirigami.FormData.label: i18n("Labels:"); text: i18n("Always show (don't hide until hover)") }
-        QQC.CheckBox { id: prompt; text: i18n("Show leading ›_ prompt") }
+        QQC.CheckBox { id: prompt; text: i18n("Show leading › prompt") }
     }
 }

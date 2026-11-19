@@ -16,7 +16,7 @@ Built for an ML/AI + .NET/React + low-level dev workflow, plus music.
 | `org.lattice.epoch` | **Epoch** | Dev-time: clock, ISO week, **day-of-year (172/365)**, a year-progress hairline, a live **Unix epoch counter** and uptime. |
 | `org.lattice.probe` | **Probe** | Network throughput as twin down/up sparklines with live rates and session peaks. |
 | `org.lattice.stack` | **Stack** | A glance at pinned git repos — project-type tag (NET/NODE/PY/RS/GO/CPP), branch, **dirty count**, ahead/behind. Click a repo to open it (configurable command). |
-| `org.lattice.rail`  | **Rail**  | A creative launcher toolbar: hairline command cells that show a glyph at rest and **slide their label open on hover**, with a blinking `›_` prompt. Runs inline in a panel or on the desktop. |
+| `org.lattice.rail`  | **Rail**  | A creative launcher toolbar: hairline command cells that show a glyph at rest and **slide their label open on hover**, with a leading `›` prompt. Runs inline in a panel or on the desktop. |
 | `org.lattice.deck`  | **Deck**  | A creative task manager — a **window "tape"**: app icons on hairline ticks; the active window lights its segment in accent and slides its title open, hover reveals any title, demands-attention pulses. Click activates / toggles minimise, middle-click closes, **right-click → Pin to deck** (pinned apps stay as a dock even when closed; pin state persists). **Drag a cell to reorder** (pinned order persists). Hover labels open rightward without shifting the tape. Optional mono icons that pop to colour on focus. |
 
 ## How it stays "in place" on any wallpaper
