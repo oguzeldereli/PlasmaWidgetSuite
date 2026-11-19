@@ -51,11 +51,25 @@ install_one() {
     fi
 }
 
+# Restart plasmashell through its systemd user unit so it gets the session
+# environment, not this shell's. Launching it from a terminal leaks the shell's
+# env (e.g. Conda's __EGL_VENDOR_LIBRARY_DIRS) into plasmashell and every app it
+# launches afterwards, which breaks GPU acceleration (Electron apps fall back to
+# CPU rendering and lag/freeze).
 restart_shell() {
     echo "↻ restarting plasmashell…"
-    kquitapp6 plasmashell >/dev/null 2>&1 || killall plasmashell 2>/dev/null || true
-    sleep 1
-    (nohup plasmashell >/dev/null 2>&1 &) || (setsid plasmashell >/dev/null 2>&1 &) || true
+    if systemctl --user cat plasma-plasmashell.service >/dev/null 2>&1; then
+        if ! systemctl --user is-active --quiet plasma-plasmashell.service; then
+            # a stray instance started outside systemd would otherwise survive
+            kquitapp6 plasmashell >/dev/null 2>&1 || killall plasmashell 2>/dev/null || true
+            sleep 1
+        fi
+        systemctl --user restart plasma-plasmashell.service
+    else
+        kquitapp6 plasmashell >/dev/null 2>&1 || killall plasmashell 2>/dev/null || true
+        sleep 1
+        (setsid env -u __EGL_VENDOR_LIBRARY_DIRS plasmashell >/dev/null 2>&1 &) || true
+    fi
     echo "✓ plasmashell relaunched"
 }
 

@@ -21,6 +21,20 @@ wait_gone() { for i in $(seq 1 30); do pgrep -x "$1" >/dev/null 2>&1 || return 0
 stop()  { kquitapp6 "$1" >/dev/null 2>&1 || killall "$1" 2>/dev/null || true; wait_gone "$1"; }
 start() { (setsid "$1" >/dev/null 2>&1 &) || (nohup "$1" >/dev/null 2>&1 &) || true; }
 
+# plasmashell goes through its systemd user unit: started from this shell it
+# would inherit the shell's env (e.g. Conda's __EGL_VENDOR_LIBRARY_DIRS) and pass
+# it to every app it launches, breaking their GPU acceleration.
+SHELL_UNIT=plasma-plasmashell.service
+has_unit() { systemctl --user cat "$SHELL_UNIT" >/dev/null 2>&1; }
+stop_shell() {
+    if has_unit; then systemctl --user stop "$SHELL_UNIT" || true; fi
+    stop plasmashell                  # also catches an instance started outside systemd
+}
+start_shell() {
+    if has_unit; then systemctl --user start "$SHELL_UNIT"
+    else (setsid env -u __EGL_VENDOR_LIBRARY_DIRS plasmashell >/dev/null 2>&1 &) || true; fi
+}
+
 disable_generic() { [ -f "$KGS" ] && sed -i 's/^\(activate application launcher=\)[^,]*,/\1none,/' "$KGS"; }
 restore_generic() { [ -f "$KGS" ] && sed -i 's/^\(activate application launcher=\)[^,]*,/\1Meta\\tAlt+F1,/' "$KGS"; }
 # drop stale kickerdash Meta entries left by earlier re-applies, keep only $1 (live id)
@@ -41,7 +55,7 @@ else
 fi
 
 echo "↻ cycling plasmashell + kglobalacceld to apply shortcut change…"
-stop plasmashell
+stop_shell
 stop kglobalacceld                  # saves memory→file, then exits; now safe to edit
 
 if [ "$action" = "remove" ]; then
@@ -53,7 +67,7 @@ fi
 
 start "$KGA"
 sleep 1
-start plasmashell
+start_shell
 
 if [ "$action" = "remove" ]; then
     echo "✓ removed Lattice top bar (Meta restored to default launcher action)"
