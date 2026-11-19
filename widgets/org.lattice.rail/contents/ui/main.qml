@@ -78,16 +78,16 @@ PlasmoidItem {
                     anchors.verticalCenter: parent.verticalCenter
                 }
                 Rectangle {   // blinking caret
+                    id: caret
                     width: Math.max(2, Lattice.Theme.hair * 2)
                     height: root.glyphPx * 0.9
                     color: root.accent
                     anchors.verticalCenter: parent.verticalCenter
-                    SequentialAnimation on opacity {
-                        running: true; loops: Animation.Infinite
-                        NumberAnimation { from: 1; to: 0; duration: 700 }
-                        PauseAnimation { duration: 300 }
-                        NumberAnimation { from: 0; to: 1; duration: 200 }
-                        PauseAnimation { duration: 500 }
+                    // Hard terminal-style blink: 2 redraws/s. A tweened infinite
+                    // animation would repaint the whole panel every vsync.
+                    Timer {
+                        interval: 600; running: true; repeat: true
+                        onTriggered: caret.opacity = caret.opacity > 0.5 ? 0 : 1
                     }
                 }
             }

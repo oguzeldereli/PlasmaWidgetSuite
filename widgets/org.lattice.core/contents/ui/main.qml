@@ -81,7 +81,14 @@ PlasmoidItem {
     }
     Component.onCompleted: nameSrc.fetch()
 
+    // Activity LED: lit briefly whenever a sample lands. Stepped on purpose — an
+    // infinite opacity tween makes Qt Quick redraw the whole desktop view every
+    // vsync (240 fps on a 240 Hz panel) for a dot.
+    property bool beat: false
+    Timer { id: beatOff; interval: 160; onTriggered: root.beat = false }
+
     function parse(out) {
+        root.beat = true; beatOff.restart();
         var s = out.split("---");
         // CPU — delta of jiffies between polls
         if (s[0]) {
@@ -159,14 +166,10 @@ PlasmoidItem {
                 spacing: Lattice.Theme.sm
                 Lattice.Caption { text: "lattice"; tone: Lattice.Theme.faint }
                 Item { Layout.fillWidth: true }
-                Rectangle {   // live pulse
+                Rectangle {   // live pulse — blinks on each sample
                     width: Lattice.Theme.xs; height: width; radius: width / 2
                     color: root.accent
-                    SequentialAnimation on opacity {
-                        running: true; loops: Animation.Infinite
-                        NumberAnimation { from: 1.0; to: 0.15; duration: Lattice.Theme.tSlow }
-                        NumberAnimation { from: 0.15; to: 1.0; duration: Lattice.Theme.tSlow }
-                    }
+                    opacity: root.beat ? 1.0 : 0.3
                 }
             }
 

@@ -118,10 +118,11 @@ Item {
         Behavior on width { NumberAnimation { duration: Lattice.Theme.tFast; easing.type: Lattice.Theme.easing } }
         Behavior on color { ColorAnimation { duration: Lattice.Theme.tFast } }
 
-        SequentialAnimation on opacity {
-            running: cell.attention; loops: Animation.Infinite; alwaysRunToEnd: true
-            NumberAnimation { from: 1.0; to: 0.25; duration: 500 }
-            NumberAnimation { from: 0.25; to: 1.0; duration: 500 }
+        // stepped blink (2 redraws/s) instead of a tween that repaints every vsync
+        Timer {
+            interval: 500; running: cell.attention; repeat: true
+            onTriggered: base.opacity = base.opacity > 0.5 ? 0.25 : 1.0
+            onRunningChanged: if (!running) base.opacity = 1.0
         }
     }
 
